@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/notice"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="通知公告" />
+        <item
+            android:id="@+id/schedule"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="课表查询" />
+        <item
+            android:id="@+id/chose_class"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="选课"/>
+        <item
+            android:id="@+id/project"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="毕设"/>
+        <item
+            android:id="@+id/GPA"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="绩点计算" />
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="相关文档" />
+        <item
+            android:id="@+id/review"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="教学评价" />
+        <item
+            android:id="@+id/bbs"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="教学论坛" />
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>
