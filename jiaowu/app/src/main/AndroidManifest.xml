@@ -17,17 +17,23 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".Notice" />
+        <activity android:name=".Schedule" />
+        <activity android:name=".Review" />
+        <activity android:name=".project" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Notice" />
-        <activity android:name=".Schedule" />
-        <activity android:name=".Review" />
-        <activity android:name=".project" />
-        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>
