@@ -3,6 +3,7 @@ package com.example.ataris.jiaowu;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.ListViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import utils.jsonhelper;
 
 public class project extends Fragment {
 private ListView project123;
@@ -90,6 +97,30 @@ private ListView project123;
             return project_teacher;
         }
     }
+
+
+    public Handler mHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            if(msg.what==1245) {
+
+            }else if(msg.what==2564){
+                JSONArray datas = jsonhelper.arrayParse((byte[])msg.obj);
+                try {
+                    for(int i=0;i<datas.length();i++)
+                    {
+                        JSONObject a = datas.getJSONObject(i);
+                        a.getString("title");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                super.handleMessage(msg);
+            }
+        }
+    };
 }
 
 

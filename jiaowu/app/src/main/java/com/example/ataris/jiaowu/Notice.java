@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import org.json.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -17,6 +19,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import utils.Http;
+import utils.jsonhelper;
 
 public class Notice extends Fragment {
 
@@ -25,8 +28,6 @@ public class Notice extends Fragment {
     private List<ImageView> images;
     private int currentItem;
     private ViewPagerAdapter adapter;
-    Http h = new Http();
-    Http.httpGet(Http. +Http.notice);
     private ScheduledExecutorService scheduledExecutorService;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +36,7 @@ public class Notice extends Fragment {
 
         View i = inflater.inflate(R.layout.activity_notice,container,false);
         banner = (ViewPager)i.findViewById(R.id.banner);
-
+            Http.httpGet(Http.notice);
         images = new ArrayList<>();
 
         return i;
@@ -47,7 +48,7 @@ public class Notice extends Fragment {
 
         @Override
         public Object instantiateItem(View container, int position) {
-            container.addView(images.get(position));
+            //container.addView(images.get(position));
             return images.get(position);
         }
 
@@ -67,7 +68,7 @@ public class Notice extends Fragment {
         }
     }
 
-    private class ViewPageTask extends Runnable{
+    private class ViewPageTask implements Runnable{
         @Override
         public void run() {
             currentItem = (currentItem + 1) % 5;
@@ -75,14 +76,23 @@ public class Notice extends Fragment {
         }
     }
 
-    private Handler mHandler = new Handler(){
+    public Handler mHandler = new Handler(){
+        @Override
         public void handleMessage(android.os.Message msg) {
             if(msg.what==1245) {
                 banner.setCurrentItem(currentItem);
-            }else if(msg.what==2564){
-
-            }else
-            {
+            }else if(msg.what==2564 && msg.arg1==0){
+                JSONArray datas = jsonhelper.arrayParse((byte[])msg.obj);
+                try {
+                    for(int i=0;i<datas.length();i++)
+                    {
+                        JSONObject a = datas.getJSONObject(i);
+                        a.getString("title");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else {
                 super.handleMessage(msg);
             }
         }
@@ -93,9 +103,7 @@ public class Notice extends Fragment {
         super.onStart();
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleWithFixedDelay(
-                new ViewPageTask(),
-                5,
-                5,
+                new ViewPageTask(),5, 5,
                 TimeUnit.SECONDS);
     }
 

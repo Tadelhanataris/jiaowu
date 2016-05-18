@@ -81,43 +81,29 @@ public class MainActivity extends AppCompatActivity
                 //进入选课页面
                 break;
             case R.id.project:
-                //进入毕业设计页面
+                if (projectpage == null)
+                {
+                    projectpage = new project();
+                }
+                // 使用当前Fragment的布局替代id_content的控件
+                transaction.replace(R.id.content, projectpage);
                 break;
             case R.id.share:
                 //进入资源共享页面
                 break;
             case R.id.review:
-                //进入教学评价页面
+                if (reviewpage == null)
+                {
+                    reviewpage = new Review();
+                }
+                // 使用当前Fragment的布局替代id_content的控件
+                transaction.replace(R.id.content, reviewpage);
                 break;
             case R.id.bbs:
                 //进入论坛页面
                 break;
 
         }
-//        if (id == R.id.notice) {
-//            //进入通知页面
-//        } else if (id == R.id.schedule) {
-//            //进入课程表页面
-//
-//        } else if (id == R.id.GPA) {
-//            //进入绩点计算页面
-//
-//        } else if (id == R.id.chose_class) {
-//            //进入选课页面
-//
-//        } else if (id == R.id.project) {
-//            //进入毕业设计页面
-//
-//        } else if (id == R.id.share) {
-//            //进入资源共享页面
-//
-//        } else if (id == R.id.review) {
-//            //进入教学评价页面
-//
-//        } else if (id == R.id.bbs) {
-//            //进入论坛页面
-//
-//        }
 
         transaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
